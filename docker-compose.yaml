@@ -3,7 +3,7 @@ networks:
 
 services:
   rstudio-server-gwr:
-    image: rstudio-server-gwr
+    image: rstudio-server-cuda
     container_name: rstudio-server-gwr
     restart: on-failure
     init: true
