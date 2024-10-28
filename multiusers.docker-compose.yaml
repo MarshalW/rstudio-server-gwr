@@ -1,0 +1,36 @@
+networks:
+  rstudio-server-multiusers:
+
+services:
+  rstudio-server-multiusers:
+    build:
+      context: .
+      dockerfile: ./multiusers.Dockerfile
+    container_name: rstudio-server-multiusers
+    restart: on-failure
+    init: true
+    volumes:
+      - /dev:/dev
+      - ./home/rstudio:/home/rstudio/work
+      - ./home/testuser:/home/testuser/work
+    networks:
+      - rstudio-server-multiusers
+    environment:
+      - PASSWORD=rstudio1
+      - ROOT=true
+    ports:
+      - 48787:8787
+    command: ["sh", "-c", "chown -R testuser:testuser /home/testuser && /init"]
+      
+    privileged: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              count: all
+
+
+

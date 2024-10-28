@@ -1,2 +1,6 @@
-GWmodel
+gwmodel
 rocker-versioned2
+
+home/*
+!home/.gitkeeper
+
