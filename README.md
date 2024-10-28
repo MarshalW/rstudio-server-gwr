@@ -2,10 +2,10 @@
 
 为什么有这个项目：
 
-- 需要使用 RStudio Server 运行 GWmodel
+- 需要使用 RStudio Server 运行 [GWmodel](https://github.com/cran/GWmodel)
 - GWmodel 默认基于 CPU 运算较慢，它有 CUDA 支持库，需要手动编译
 - 需要 RStudio Server 支持 CUDA，[官方的镜像](https://github.com/rocker-org/rocker-versioned2) 目前（2024-10-28）支持到 `CUDA 11.8`
-- 目前手头环境都是 `CUDA 12.2`，在手动编译 `GWR-CUDA` 遇到版本适配等问题
+- 手头环境都是 `CUDA 12.2`，在手动编译 `GWR-CUDA` 遇到版本适配等问题
 - 因此:
     - 定制 RStudio Server，使之支持 `CUDA 12.2`
     - 修改 GWR-CUDA 编译参数，使之支持最新的 Nvidia GPU 架构（包括 Ada、Hopper 和 Blackwell）
