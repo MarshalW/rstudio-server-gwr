@@ -1,0 +1,36 @@
+networks:
+  rstudio-server-gwr:
+
+services:
+  rstudio-server-gwr:
+    image: rstudio-server-gwr
+    container_name: rstudio-server-gwr
+    restart: on-failure
+    init: true
+    volumes:
+      - /dev:/dev
+      - ./home:/home/rstudio
+      # - r_libs_1:/usr/local/lib/R
+    networks:
+      - rstudio-server-gwr
+    environment:
+      - PASSWORD=rstudio1
+      - ROOT=true
+    ports:
+      - 38787:8787
+      
+    privileged: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              count: all
+    expose:
+      - 38787
+
+# volumes:
+#   r_libs_1:
+
